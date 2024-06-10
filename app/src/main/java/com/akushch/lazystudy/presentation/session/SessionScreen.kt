@@ -40,87 +40,100 @@ import com.akushch.lazystudy.presentation.components.SubjectListBottomSheet
 import com.akushch.lazystudy.presentation.components.studySessionsList
 import com.akushch.lazystudy.sessions
 import com.akushch.lazystudy.subjects
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
+
+@Destination
+@Composable
+fun SessionScreenRoute(
+    navigator: DestinationsNavigator
+) {
+    SessionScreen(
+        onBackButtonClick = { navigator.navigateUp() }
+    )
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SessionScreen() {
+    private fun SessionScreen(
+        onBackButtonClick: () -> Unit
+    ) {
 
-    val scope = rememberCoroutineScope()
-    val sheetState = rememberModalBottomSheetState()
-    var isBottomSheetOpen by remember { mutableStateOf(false) }
-
-    var isDeleteDialogOpen by rememberSaveable { mutableStateOf(false) }
-
-
-    SubjectListBottomSheet(
-        sheetState = sheetState,
-        isOpen = isBottomSheetOpen,
-        subjects = subjects,
-        onDismissRequest = { isBottomSheetOpen = false },
-        onSubjectClicked = {
-            scope.launch { sheetState.hide() }.invokeOnCompletion {
-                if (!sheetState.isVisible) isBottomSheetOpen = false
+        val scope = rememberCoroutineScope()
+        val sheetState = rememberModalBottomSheetState()
+        var isBottomSheetOpen by remember { mutableStateOf(false) }
+        var isDeleteDialogOpen by rememberSaveable { mutableStateOf(false) }
+        SubjectListBottomSheet(
+            sheetState = sheetState,
+            isOpen = isBottomSheetOpen,
+            subjects = subjects,
+            onDismissRequest = { isBottomSheetOpen = false },
+            onSubjectClicked = {
+                scope.launch { sheetState.hide() }.invokeOnCompletion {
+                    if (!sheetState.isVisible) isBottomSheetOpen = false
+                }
             }
-        }
-    )
+        )
+        DeleteDialog(
+            isOpen = isDeleteDialogOpen,
+            title = "Delete Session?",
+            bodyText = "Are you sure, you want to delete this session? " +
+                    "This action can not be undone.",
+            onDismissRequest = { isDeleteDialogOpen = false },
+            onConfirmButtonClick = {
+                isDeleteDialogOpen = false
+            }
+        )
 
-    DeleteDialog(
-        isOpen = isDeleteDialogOpen,
-        title = "Delete Session?",
-        bodyText = "Are you sure, you want to delete this session? " +
-                "This action can not be undone.",
-        onDismissRequest = { isDeleteDialogOpen = false },
-        onConfirmButtonClick = {
-            isDeleteDialogOpen = false
-        }
-    )
-
-    Scaffold(
-        topBar = {
-            SessionScreenTopBar(onBackButtonClick = {})
-        }
-    ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            item {
-                TimerSection(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1f)
+        Scaffold(
+            topBar = {
+                SessionScreenTopBar(onBackButtonClick = {})
+                SessionScreenTopBar(onBackButtonClick = onBackButtonClick)
+            }
+        ) { paddingValues ->
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                item {
+                    TimerSection(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(1f)
+                    )
+                }
+                item {
+                    RelatedToSubjectSection(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp),
+                        relatedToSubject = "English",
+                        selectSubjectButtonClick = { isBottomSheetOpen = true }
+                    )
+                }
+                item {
+                    ButtonsSection(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(12.dp),
+                        startButtonClick = { },
+                        cancelButtonClick = { },
+                        finishButtonClick = { }
+                    )
+                }
+                studySessionsList(
+                    sectionTitle = "STUDY SESSIONS HISTORY",
+                    emptyListText = "You don't have any recent study sessions.\n " +
+                            "Start a study session to begin recording your progress.",
+                    sessions = sessions,
+                    onDeleteIconClick = { isDeleteDialogOpen = true}
+                            onDeleteIconClick = { isDeleteDialogOpen = true }
                 )
             }
-            item {
-                RelatedToSubjectSection(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 12.dp),
-                    relatedToSubject = "English",
-                    selectSubjectButtonClick = { isBottomSheetOpen = true }
-                )
-            }
-            item {
-                ButtonsSection(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(12.dp),
-                    startButtonClick = { },
-                    cancelButtonClick = { },
-                    finishButtonClick = { }
-                )
-            }
-            studySessionsList(
-                sectionTitle = "STUDY SESSIONS HISTORY",
-                emptyListText = "You don't have any recent study sessions.\n " +
-                        "Start a study session to begin recording your progress.",
-                sessions = sessions,
-                onDeleteIconClick = { isDeleteDialogOpen = true}
-            )
         }
-    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
