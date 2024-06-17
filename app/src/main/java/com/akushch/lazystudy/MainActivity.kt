@@ -9,7 +9,9 @@ import com.akushch.lazystudy.domain.model.Task
 import com.akushch.lazystudy.presentation.NavGraphs
 import com.akushch.lazystudy.ui.theme.LazyStudyTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

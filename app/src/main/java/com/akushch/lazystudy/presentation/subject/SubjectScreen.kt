@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.akushch.lazystudy.domain.model.Subject
 import com.akushch.lazystudy.presentation.components.AddSubjectDialog
 import com.akushch.lazystudy.presentation.components.CountCard
@@ -63,6 +64,7 @@ data class SubjectScreenNavArgs(
 fun SubjectScreenRoute(
     navigator: DestinationsNavigator
 ) {
+    val viewModel: SubjectViewModel = hiltViewModel()
     SubjectScreen(
         onBackButtonClick = { navigator.navigateUp() },
         onAddTaskButtonClick = {

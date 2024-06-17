@@ -42,6 +42,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.akushch.lazystudy.presentation.components.DeleteDialog
 import com.akushch.lazystudy.presentation.components.SubjectListBottomSheet
 import com.akushch.lazystudy.presentation.components.TaskCheckBox
@@ -65,6 +66,7 @@ data class TaskScreenNavArgs(
 fun TaskScreenRoute(
     navigator: DestinationsNavigator
 ) {
+    val viewModel: TaskViewModel = hiltViewModel()
     TaskScreen(
         onBackButtonClick = { navigator.navigateUp() }
     )
