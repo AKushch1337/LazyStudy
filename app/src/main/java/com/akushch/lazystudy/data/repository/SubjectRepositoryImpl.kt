@@ -1,8 +1,8 @@
 package com.akushch.lazystudy.data.repository
 
-import com.example.studysmart.data.local.SubjectDao
-import com.example.studysmart.domain.model.Subject
-import com.example.studysmart.domain.repository.SubjectRepository
+import com.akushch.lazystudy.data.local.SubjectDao
+import com.akushch.lazystudy.domain.model.Subject
+import com.akushch.lazystudy.domain.repository.SubjectRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -15,11 +15,11 @@ class SubjectRepositoryImpl @Inject constructor(
     }
 
     override fun getTotalSubjectCount(): Flow<Int> {
-        TODO("Not yet implemented")
+        return subjectDao.getTotalSubjectCount()
     }
 
     override fun getTotalGoalHours(): Flow<Float> {
-        TODO("Not yet implemented")
+        return subjectDao.getTotalGoalHours()
     }
 
     override suspend fun deleteSubject(subjectInt: Int) {
@@ -31,6 +31,6 @@ class SubjectRepositoryImpl @Inject constructor(
     }
 
     override fun getAllSubjects(): Flow<List<Subject>> {
-        TODO("Not yet implemented")
+        return subjectDao.getAllSubjects()
     }
 }

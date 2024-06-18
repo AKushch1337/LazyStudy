@@ -1,9 +1,10 @@
 package com.akushch.lazystudy.data.repository
 
-import com.example.studysmart.data.local.TaskDao
-import com.example.studysmart.domain.model.Task
-import com.example.studysmart.domain.repository.TaskRepository
+import com.akushch.lazystudy.data.local.TaskDao
+import com.akushch.lazystudy.domain.model.Task
+import com.akushch.lazystudy.domain.repository.TaskRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class TaskRepositoryImpl @Inject constructor(
@@ -31,6 +32,12 @@ class TaskRepositoryImpl @Inject constructor(
     }
 
     override fun getAllUpcomingTasks(): Flow<List<Task>> {
-        TODO("Not yet implemented")
+        return taskDao.getAllTasks()
+            .map { tasks -> tasks.filter { it.isComplete.not() } }
+            .map { tasks -> sortTasks(tasks) }
+    }
+
+    private fun sortTasks(tasks: List<Task>): List<Task> {
+        return tasks.sortedWith(compareBy<Task> { it.dueDate }.thenByDescending { it.priority })
     }
 }

@@ -1,11 +1,11 @@
 package com.akushch.lazystudy.di
 
-import com.example.studysmart.data.repository.SessionRepositoryImpl
-import com.example.studysmart.data.repository.SubjectRepositoryImpl
-import com.example.studysmart.data.repository.TaskRepositoryImpl
-import com.example.studysmart.domain.repository.SessionRepository
-import com.example.studysmart.domain.repository.SubjectRepository
-import com.example.studysmart.domain.repository.TaskRepository
+import com.akushch.lazystudy.data.repository.SessionRepositoryImpl
+import com.akushch.lazystudy.data.repository.SubjectRepositoryImpl
+import com.akushch.lazystudy.data.repository.TaskRepositoryImpl
+import com.akushch.lazystudy.domain.repository.SessionRepository
+import com.akushch.lazystudy.domain.repository.SubjectRepository
+import com.akushch.lazystudy.domain.repository.TaskRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

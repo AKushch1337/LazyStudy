@@ -1,6 +1,5 @@
 package com.akushch.lazystudy.domain.model
 
-import androidx.compose.ui.graphics.Color
 import com.akushch.lazystudy.ui.theme.gradient1
 import com.akushch.lazystudy.ui.theme.gradient2
 import com.akushch.lazystudy.ui.theme.gradient3
@@ -13,7 +12,7 @@ import androidx.room.PrimaryKey
 data class Subject(
     val name: String,
     val goalHours: Float,
-    val colors: List<Color>,
+    val colors: List<Int>,
     @PrimaryKey(autoGenerate = true)
     val subjectId: Int? = null
 ) {
