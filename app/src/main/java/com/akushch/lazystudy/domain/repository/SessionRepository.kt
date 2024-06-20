@@ -1,6 +1,6 @@
 package com.akushch.lazystudy.domain.repository
 
-import com.example.studysmart.domain.model.Session
+import com.akushch.lazystudy.domain.model.Session
 import kotlinx.coroutines.flow.Flow
 
 interface SessionRepository {
@@ -17,5 +17,5 @@ interface SessionRepository {
 
     fun getTotalSessionsDuration(): Flow<Long>
 
-    fun getTotalSessionsDurationBySubjectId(subjectId: Int): Flow<Long>
+    fun getTotalSessionsDurationBySubject(subjectId: Int): Flow<Long>
 }

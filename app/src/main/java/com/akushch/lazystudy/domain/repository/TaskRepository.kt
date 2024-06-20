@@ -1,6 +1,6 @@
 package com.akushch.lazystudy.domain.repository
 
-import com.example.studysmart.domain.model.Task
+import com.akushch.lazystudy.domain.model.Task
 import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository {

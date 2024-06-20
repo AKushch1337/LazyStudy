@@ -26,7 +26,7 @@ object DatabaseModule {
             .databaseBuilder(
                 application,
                 AppDatabase::class.java,
-                "studysmart.db"
+                "lazystudy.db"
             )
             .build()
     }

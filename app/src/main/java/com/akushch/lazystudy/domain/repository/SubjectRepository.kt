@@ -1,6 +1,6 @@
 package com.akushch.lazystudy.domain.repository
 
-import com.example.studysmart.domain.model.Subject
+import com.akushch.lazystudy.domain.model.Subject
 import kotlinx.coroutines.flow.Flow
 
 interface SubjectRepository {

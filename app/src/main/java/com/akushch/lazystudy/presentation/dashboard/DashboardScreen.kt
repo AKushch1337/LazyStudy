@@ -58,11 +58,7 @@ import com.akushch.lazystudy.presentation.destinations.SubjectScreenRouteDestina
 import com.akushch.lazystudy.presentation.destinations.TaskScreenRouteDestination
 import com.akushch.lazystudy.presentation.subject.SubjectScreenNavArgs
 import com.akushch.lazystudy.presentation.subject.SubjectScreenRoute
-import com.akushch.lazystudy.presentation.task.TaskScreenNavArgs
 import com.akushch.lazystudy.presentation.tasks.TaskScreenNavArgs
-import com.akushch.lazystudy.sessions
-import com.akushch.lazystudy.subjects
-import com.akushch.lazystudy.tasks
 import com.akushch.lazystudy.util.SnackbarEvent
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
